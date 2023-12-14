@@ -1,0 +1,43 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ #Le client Eureka utilisera cette URL pour communiquer avec le serveur Eureka, notamment pour s'enregistrer en tant que service et pour rechercher d'autres services enregistr?s.
+server:
+  port: 8090 #Cette section permet de configurer le port sur lequel l'application cliente Eureka ?coutera les requ?tes entrantes.
+
+
+
+spring:
+  application:
+    name: users #le nom qui va apparaitre au niveau de eureka interface ;application sera enregistr?e sous le nom "users" dans le registre Eureka. Cela facilite la d?couverte de votre application par d'autres services.
+  config:
+    import: optional:configserver:http://localhost:8888 #Cela signifie que votre application peut r?cup?rer sa configuration ? partir de ce serveur de configuration distant au lieu de stocker la configuration localement.
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/microservice
+    username: postgres
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  web:
+    cors:
+      allow-credentials: true
+      allowed-origins: http://localhost:3001
+      allowed-headers: "*"
+      allowed-methods: "*"
+
+
+
+  bigbluebutton:
+    api:
+      url: https://demo.bigbluebutton.org/bigbluebutton/api
+
+
+
+

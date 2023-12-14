@@ -1,0 +1,23 @@
+eureka:
+  instance:
+    hostname: localhost #hostname of the discovery server
+  client:
+    register-with-eureka: false #eureka(discovery) n'a pas besoin de s'inscrire(register) par lui m?me
+    fetch-registry: false # on n'a pas besoin de recuperer le registre
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/ #first config of my eureka server
+
+server:
+  port: 8761
+  #tell the eureka to read the configuration from config server
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+
+  #optionnal:si ce microservice ne trouve pas la configuration sur le serveur de configuration
+  # ne va pas ?chouer au demmarage
+
+
+
+
+
